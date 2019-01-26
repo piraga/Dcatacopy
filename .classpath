@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Datacopy/src"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/piragadeeswaran.rajappa@dsiindia.com/Downloads/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/piragadeeswaran.rajappa@dsiindia.com/Downloads/ojdbc14.jar"/>
+	<classpathentry kind="output" path="Datacopy/bin"/>
+</classpath>

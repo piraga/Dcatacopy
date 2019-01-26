@@ -53,14 +53,15 @@ public class FetchAcctSec extends DataCopy implements FetchTables {
 	public void processRad() {
 		
 		int j=1;
-		String query1 = null;
+
+		String query1 = "";
 		try {
 			
 			System.out.println(acctId+"  "+secId+"  "+acctNo+"  "+secNo);
 			ResultSet rs=dm.executeQueryByName("RAD", pstmNo);
 			
 			ResultSetMetaData rsmd = rs.getMetaData();
-			String query = "INSERT INTO "+ rsmd.getTableName(1)+" (";
+			String query = "INSERT INTO SVI_RAD (";
 			
 			int columnCoun=rsmd.getColumnCount();
 			for(int i=1;i<=columnCoun;i++) {
@@ -76,26 +77,49 @@ public class FetchAcctSec extends DataCopy implements FetchTables {
 			while(rs.next()) {
 			
 				for(int i=1;i<=columnCoun;i++) {
-					query1+="'";
+					
 //				System.out.println(rsmd.getColumnTypeName(j));
 				String count = rsmd.getColumnName(j);
 //				System.out.println(count);
 				if("DATE".equals(rsmd.getColumnTypeName(j))) {
-					query1+="to_date(" + rs.getString(j)+"'"+ ",'MM/dd/yyyy')";
+					rs.getDate(j);
+					if ( rs.wasNull()) {
+						query1+=null;
+					}else {
+						query1+="to_date('" + rs.getDate(j)+"','MM/dd/yyyy')";
+					}
+					
 				}else if("NUMBER".equals(rsmd.getColumnTypeName(j))){
-					query1+=rs.getInt(count);
+					rs.getInt(count);
+					if ( rs.wasNull()) {
+						query1+=null;
+					}else {
+						query1+="'";
+						query1+=rs.getInt(count);
+						query1+="'";
+					}
+					
 				}else {
-					query1+=rs.getString(count);
+					rs.getString(count);
+					if ( rs.wasNull()) {
+						query1+=null;
+					}else {
+						query1+="'";
+						query1+=rs.getString(count);
+						query1+="'";
+					}
+					
 				}
-				query1+="'";
-				if(i!=columnCoun)
+			
+				
+				if(i!=columnCoun )
 				query1+=",";
 				j++;
 			}
 				j=1;
 				query1+=");";
 				System.out.println(query+" "+query1);
-				query1=null;
+				query1="";
 				
 			}
 			
