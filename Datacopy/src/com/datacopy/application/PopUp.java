@@ -36,7 +36,7 @@ public class PopUp {
 		
 		List<String> process = new ArrayList<String>();
 		process.add("Account Security Wise");
-		process.add("Account Wise");
+//		process.add("Account Wise");  @1
 		
 		ChoiceDialog<String> choice = new ChoiceDialog<String>("Account Security Wise",process);
 		choice.setTitle("Datacopy Choices");
@@ -44,8 +44,9 @@ public class PopUp {
 		choice.setContentText("Choose your wish");
 		Optional<String> selection=choice.showAndWait();
 		System.out.println(selection.get());
-		if (selection.get().equalsIgnoreCase("Account Security Wise"))
-			return true;
+//		if (selection.get().equalsIgnoreCase("Account Security Wise"))	@2
+//			return true;												@2
+//		TO ENABLE ACCOUNT WISE PLEASE RECOMMENT ABOVE  (@1) AND (@2)
 		System.out.println(selection);
 		return false;
 		
